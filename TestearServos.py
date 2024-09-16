@@ -1,72 +1,32 @@
 import time
 from adafruit_servokit import ServoKit
 
-# Inicialización del controlador de servos
-mover = ServoKit(channels=16)
+# Inicializa el controlador de servos con 16 canales
+kit = ServoKit(channels=16)
 
-# Definición de los canales de los servos
-MANOD = 0
-CODOD = 1
-HOMBROD = 2
-CADERAD = 3
-MUSLOD = 4
-RODILLAD = 5
-TOBILLOD = 6
-PIED = 7
-MANOI = 8
-CODOI = 9
-HOMBROI = 10
-CADERAI = 11
-MUSLOI = 12
-RODILLAI = 13
-TOBILLOI = 14
-PIEI = 15
-
-# Mapeo de nombres de servos a sus canales
-servidores = {
-    "MANOD": MANOD,
-    "CODOD": CODOD,
-    "HOMBROD": HOMBROD,
-    "CADERAD": CADERAD,
-    "MUSLOD": MUSLOD,
-    "RODILLAD": RODILLAD,
-    "TOBILLOD": TOBILLOD,
-    "PIED": PIED,
-    "MANOI": MANOI,
-    "CODOI": CODOI,
-    "HOMBROI": HOMBROI,
-    "CADERAI": CADERAI,
-    "MUSLOI": MUSLOI,
-    "RODILLAI": RODILLAI,
-    "TOBILLOI": TOBILLOI,
-    "PIEI": PIEI
+# Valores iniciales para los servos
+valores_iniciales = {
+    0: 90, 1: 90, 2: 90, 3: 97.5, 4: 90, 5: 90,
+    6: 90, 7: 90, 8: 90, 9: 90, 10: 90, 11: 97.5,
+    12: 90, 13: 90, 14: 90, 15: 90
 }
 
 # Configura los servos con sus ángulos iniciales
 def configuracion_inicio():
-    # SERVOS LADO DERECHO
-    mover.servo[HOMBROD].angle = 90
-    mover.servo[CODOD].angle = 90
-    mover.servo[CADERAD].angle = 90
-    mover.servo[RODILLAD].angle = 90
-    mover.servo[TOBILLOD].angle = 90
-    mover.servo[PIED].angle = 90
-
-    # SERVOS LADO IZQUIERDO
-    mover.servo[HOMBROI].angle = 90
-    mover.servo[CODOI].angle = 90
-    mover.servo[CADERAI].angle = 90
-    mover.servo[RODILLAI].angle = 90
-    mover.servo[TOBILLOI].angle = 90
-    mover.servo[PIEI].angle = 90
-
-    print("Posiciones iniciales establecidas en 90 grados.")
+    for canal, angulo in valores_iniciales.items():
+        kit.servo[canal].angle = angulo
+    print("Posiciones iniciales establecidas.")
 
 # Ajusta el ángulo de los servos seleccionados
 def ajustar_servos(servos_ajustar):
-    for nombre, (canal, angulo) in servos_ajustar.items():
-        mover.servo[canal].angle = angulo
+    for canal, angulo in servos_ajustar.items():
+        kit.servo[canal].angle = angulo
     print("Ángulos ajustados.")
+
+def mostrar_lista_servos():
+    print("Lista de servos disponibles:")
+    for canal in range(16):
+        print(f"Canal {canal} - Ángulo actual: {valores_iniciales.get(canal, 90)}")
 
 def main():
     # Configurar servos a posiciones iniciales
@@ -74,6 +34,9 @@ def main():
     
     while True:
         try:
+            # Mostrar lista de servos disponibles
+            mostrar_lista_servos()
+            
             # Leer la entrada del usuario para el número de servos a ajustar
             num_servos = int(input("Ingrese el número de servos a ajustar (1-6): "))
             if num_servos < 1 or num_servos > 6:
@@ -83,18 +46,17 @@ def main():
             servos_ajustar = {}
             
             for i in range(num_servos):
-                nombre = input(f"Ingrese el nombre del servo {i + 1} (por ejemplo, 'MANOD', 'CODOD', etc.): ").strip().upper()
-                if nombre not in servidores:
-                    print("Nombre de servo inválido. Debe ser uno de los nombres definidos.")
+                canal = int(input(f"Ingrese el número del canal del servo {i + 1} (0-15): "))
+                if canal < 0 or canal > 15:
+                    print("Número de canal inválido. Debe estar entre 0 y 15.")
                     continue
                 
-                angulo = float(input(f"Ingrese el ángulo para el servo {nombre} (0-180): "))
+                angulo = float(input(f"Ingrese el ángulo para el servo en el canal {canal} (0-180): "))
                 if angulo < 0 or angulo > 180:
                     print("Ángulo inválido. Debe estar entre 0 y 180 grados.")
                     continue
                 
-                canal = servidores[nombre]
-                servos_ajustar[nombre] = (canal, angulo)
+                servos_ajustar[canal] = angulo
             
             # Ajustar los servos seleccionados
             ajustar_servos(servos_ajustar)
