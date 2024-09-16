@@ -72,10 +72,9 @@ def main():
     # Configurar servos a posiciones iniciales
     configuracion_inicio()
     
-    # Iniciar el ajuste de servos
     while True:
         try:
-            # Leer la entrada del usuario
+            # Leer la entrada del usuario para el número de servos a ajustar
             num_servos = int(input("Ingrese el número de servos a ajustar (1-6): "))
             if num_servos < 1 or num_servos > 6:
                 print("Número inválido. Debe estar entre 1 y 6.")
@@ -111,4 +110,5 @@ def main():
     print("Finalizando el programa.")
 
 # Ejecutar el programa
-main()
+if __name__ == "__main__":
+    main()
