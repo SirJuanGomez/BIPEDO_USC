@@ -147,8 +147,8 @@ def reaccion_en_cadena():
         time.sleep(0.01)
 
     # Regresa los servos 2 y 10 a sus ángulos iniciales
-    mover_servo_a_inicial(2, duracion_regreso)
-    mover_servo_a_inicial(10, duracion_regreso)
+    mover_servo(2, valores_maximos[2], valores_iniciales[2], duracion_regreso)
+    mover_servo(10, valores_maximos[10], valores_iniciales[10], duracion_regreso)
 
 # Ejecuta la reacción en cadena
 reaccion_en_cadena()
