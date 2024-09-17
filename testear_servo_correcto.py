@@ -26,57 +26,39 @@ valores_iniciales = {
 }
 
 valores_maximos = {
-    #Lado Derecho
     0: 170, #1
     1: 160, #2
     2: 150, #3
-    ######################################
     3: 110, #4
-    ######################################
     4: 140, #5
     5: 130, #6
-    ######################################
     6: 140, #7
     7: 120, #8
-
-    #Lado Izquierdo
     8: 90, #9
     9: 150, #10
     10: 175, #11
-    ##############################
     11: 155, #12
-    ##############################
     12: 140, #13
     13: 130, #14
-    ##############################
     14: 180, #15
     15: 120 #16
 }
 
 valores_minimos = {
-    #Lado Derecho
     0: 90, #1
     1: 45, #2
     2: 25, #3
-    ##############################
     3: 25, #4
-    ##############################
     4: 30, #5
     5: 40, #6
-    ##############################
     6: 40, #7
     7: 45, #8
-
-    #Lado Izquierdo
     8: 25, #9
     9: 25, #10
     10: 25, #11
-    ##############################
     11: 80, #12
-    ##############################
     12: 30, #13
     13: 40, #14
-    ##############################
     14: 65, #15
     15: 45 #16
 }
@@ -100,21 +82,19 @@ def mover_suave(S1, AI1, AF1, S2, AI2, AF2, duracion):
         time.sleep(intervalo)
 
 def animaciones():
-    # Movimiento paralelo
+    # Definir los movimientos de animación
     threads = [
         threading.Thread(target=mover_suave, args=(2, valores_iniciales[2], valores_maximos[2], 10, valores_iniciales[10], valores_maximos[10], 5)),
-        threading.Thread(target=mover_suave, args=(1, valores_iniciales[1], valores_maximos[1], 9, valores_iniciales[9], valores_maximos[9], 6)),
         threading.Thread(target=mover_suave, args=(2, valores_maximos[2], valores_iniciales[2], 10, valores_maximos[10], valores_iniciales[10], 5)),
-        threading.Thread(target=mover_suave, args=(1, valores_maximos[1], valores_iniciales[1], 9, valores_maximos[9], valores_iniciales[9], 3)),
         threading.Thread(target=mover_suave, args=(2, valores_iniciales[2], valores_minimos[2], 10, valores_iniciales[10], valores_minimos[10], 5)),
         threading.Thread(target=mover_suave, args=(2, valores_minimos[2], valores_iniciales[2], 10, valores_minimos[10], valores_iniciales[10], 5))
     ]
     
-    # Inicia los hilos
+    # Inicia los hilos de animación
     for thread in threads:
         thread.start()
 
-    # Espera a que todos los hilos terminen
+    # Espera a que todos los hilos de animación terminen
     for thread in threads:
         thread.join()
 
@@ -125,12 +105,11 @@ def preparar_y_animar():
     # Espera para asegurarse de que los servos lleguen a las posiciones temporales
     time.sleep(2)
 
-    # Ejecuta las animaciones en paralelo
+    # Inicia las animaciones
     animaciones()
 
-    # Opcionalmente, mueve los servos de regreso a sus posiciones iniciales suavemente
-    # Esto se puede hacer al final de la animación o de manera separada según tu necesidad
-    # mover_suave(1, valores_temporales_iniciales[1], valores_iniciales[1], 9, valores_temporales_iniciales[9], valores_iniciales[9], 2)
+    # Mueve los servos 1 y 9 de regreso a los valores iniciales suavemente
+    mover_suave(1, valores_temporales_iniciales[1], valores_iniciales[1], 9, valores_temporales_iniciales[9], valores_iniciales[9], 2)
 
 # Ejecuta la función que prepara los servos y luego inicia la animación
 preparar_y_animar()
