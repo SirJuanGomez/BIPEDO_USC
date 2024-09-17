@@ -1,5 +1,4 @@
 import time
-import threading
 from adafruit_servokit import ServoKit
 
 # Inicializa el controlador de servos con 16 canales
@@ -82,32 +81,29 @@ def mover_suave(S1, AI1, AF1, S2, AI2, AF2, duracion):
         time.sleep(intervalo)
 
 def animaciones():
-    # Definir los movimientos de animación
-    threads = [
-        threading.Thread(target=mover_suave, args=(2, valores_iniciales[2], valores_maximos[2], 10, valores_iniciales[10], valores_maximos[10], 5)),
-        threading.Thread(target=mover_suave, args=(2, valores_maximos[2], valores_iniciales[2], 10, valores_maximos[10], valores_iniciales[10], 5)),
-        threading.Thread(target=mover_suave, args=(2, valores_iniciales[2], valores_minimos[2], 10, valores_iniciales[10], valores_minimos[10], 5)),
-        threading.Thread(target=mover_suave, args=(2, valores_minimos[2], valores_iniciales[2], 10, valores_minimos[10], valores_iniciales[10], 5))
-    ]
+    print("Iniciando animaciones...")
     
-    # Inicia los hilos de animación
-    for thread in threads:
-        thread.start()
+    # Secuencia de animación
+    mover_suave(2, valores_iniciales[2], valores_maximos[2], 10, valores_iniciales[10], valores_maximos[10], 5)
+    mover_suave(2, valores_maximos[2], valores_iniciales[2], 10, valores_maximos[10], valores_iniciales[10], 5)
+    mover_suave(2, valores_iniciales[2], valores_minimos[2], 10, valores_iniciales[10], valores_minimos[10], 5)
+    mover_suave(2, valores_minimos[2], valores_iniciales[2], 10, valores_minimos[10], valores_iniciales[10], 5)
 
-    # Espera a que todos los hilos de animación terminen
-    for thread in threads:
-        thread.join()
+    print("Animaciones completadas.")
 
 def preparar_y_animar():
+    print("Moviendo servos a posiciones temporales...")
     # Mueve los servos 1 y 9 a los valores temporales iniciales suavemente
     mover_suave(1, valores_iniciales[1], valores_temporales_iniciales[1], 9, valores_iniciales[9], valores_temporales_iniciales[9], 2)
     
     # Espera para asegurarse de que los servos lleguen a las posiciones temporales
+    print("Esperando a que los servos lleguen a posiciones temporales...")
     time.sleep(2)
 
     # Inicia las animaciones
     animaciones()
 
+    print("Moviendo servos de regreso a posiciones iniciales...")
     # Mueve los servos 1 y 9 de regreso a los valores iniciales suavemente
     mover_suave(1, valores_temporales_iniciales[1], valores_iniciales[1], 9, valores_temporales_iniciales[9], valores_iniciales[9], 2)
 
