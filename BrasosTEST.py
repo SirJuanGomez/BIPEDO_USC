@@ -6,21 +6,78 @@ kit = ServoKit(channels=16)
 
 # Valores iniciales, máximos y mínimos para los servos
 valores_iniciales = {
-    0: 90, 1: 90, 2: 90, 3: 97.5, 4: 90, 5: 90,
-    6: 90, 7: 90, 8: 90, 9: 90, 10: 90, 11: 97.5,
-    12: 90, 13: 90, 14: 90, 15: 90
+    0: 90, 
+    1: 85, 
+    2: 90, 
+    3: 85, 
+    4: 80, 
+    5: 90,
+    6: 95, 
+    7: 90, 
+    8: 90, 
+    9: 90, 
+    10: 100, 
+    11: 90,
+    12: 90, 
+    13: 90, 
+    14: 120, 
+    15: 80
 }
 
 valores_maximos = {
-    0: 180, 1: 170, 2: 160, 3: 170, 4: 140, 5: 180,
-    6: 170, 7: 160, 8: 150, 9: 140, 10: 180, 11: 25,
-    12: 160, 13: 150, 14: 140, 15: 180
+    #Lado Derecho
+    0: 170, #1
+    1: 160, #2
+    2: 150, #3
+    ####################################
+    3: 110, #4
+    ################################
+    4: 140, #5
+    5: 130, #6
+    #################################
+    6: 140, #7
+    7: 120, #8
+
+    #Lado Izquierdo
+    8: 90, #9
+    9: 150, #10
+    10: 175, #11
+    ###############################
+    11: 155, #12
+    #############################
+    12: 140, #13
+    13: 130, #14
+    ##############################
+    14: 180, #15
+    15: 120 #16
 }
 
 valores_minimos = {
-    0: 0, 1: 10, 2: 20, 3: 25, 4: 40, 5: 0,
-    6: 10, 7: 20, 8: 30, 9: 40, 10: 0, 11: 170,
-    12: 20, 13: 30, 14: 40, 15: 0
+    #Lado Derecho
+    0: 90, #1
+    1: 45, #2
+    2: 25, #3
+    ############################
+    3: 25, #4
+    ##########################
+    4: 30, #5
+    5: 40, #6
+    #######################
+    6: 40, #7
+    7: 45, #8
+
+    #Lado Izquierdo
+    8: 25, #9
+    9: 25, #10
+    10: 25, #11
+    ###############################
+    11: 80, #12
+    ###############################
+    12: 30, #13
+    13: 40, #14
+    ###################################
+    14: 65, #15
+    15: 45 #16
 }
 
 # Inicializa todos los servos en sus posiciones iniciales
@@ -67,22 +124,22 @@ def reaccion_en_cadena():
     rango_final = valores_iniciales[0] + 20
 
     # Mueve el primer servo al valor máximo
-    mover_servo(0, valores_minimos[0], valores_maximos[0], duracion_total)
+    mover_servo(3, valores_minimos[3], valores_maximos[3], duracion_total)
     
     # Inicia el movimiento del segundo servo cuando el primer servo esté en el rango especificado
     inicio = time.time()
     segundo_servo_comenzado = False
     while True:
-        if servo_en_rango(0, rango_inicio, rango_final) and not segundo_servo_comenzado:
+        if servo_en_rango(3, rango_inicio, rango_final) and not segundo_servo_comenzado:
             mover_servo(1, valores_minimos[1], valores_maximos[1], duracion_total)
             segundo_servo_comenzado = True
-        if not servo_en_rango(0, rango_inicio, rango_final) and segundo_servo_comenzado:
+        if not servo_en_rango(3, rango_inicio, rango_final) and segundo_servo_comenzado:
             mover_servo_a_inicial(1, duracion_regreso)
             break
         time.sleep(0.01)
 
     # Continúa el primer servo hacia el valor mínimo
-    mover_servo(0, valores_maximos[0], valores_minimos[0], duracion_total)
+    mover_servo(3, valores_maximos[3], valores_minimos[3], duracion_total)
     
     # Asegúrate de que el segundo servo regrese a su posición inicial antes de finalizar
     mover_servo_a_inicial(1, duracion_regreso)
