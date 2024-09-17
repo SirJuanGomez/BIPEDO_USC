@@ -82,8 +82,8 @@ valores_minimos = {
 }
 
 valores_temporales_iniciales = {
-    1: 110,
-    9: 75
+    1: 45,
+    9: 130
 }
 
 def mover_suave(S1, AI1, AF1, S2, AI2, AF2, duracion):
@@ -118,19 +118,19 @@ def animaciones():
     for thread in threads:
         thread.join()
 
-# Mueve los servos 1 y 9 a los valores temporales iniciales suavemente y luego ejecuta las animaciones
 def preparar_y_animar():
-    # Movimiento suave hacia los valores temporales iniciales
+    # Mueve los servos 1 y 9 a los valores temporales iniciales suavemente
     mover_suave(1, valores_iniciales[1], valores_temporales_iniciales[1], 9, valores_iniciales[9], valores_temporales_iniciales[9], 2)
-
+    
     # Espera para asegurarse de que los servos lleguen a las posiciones temporales
     time.sleep(2)
-    
+
     # Ejecuta las animaciones en paralelo
     animaciones()
 
-    # Movimiento suave de regreso a los valores iniciales mientras se ejecuta la animación
-    mover_suave(1, valores_temporales_iniciales[1], valores_iniciales[1], 9, valores_temporales_iniciales[9], valores_iniciales[9], 2)
+    # Opcionalmente, mueve los servos de regreso a sus posiciones iniciales suavemente
+    # Esto se puede hacer al final de la animación o de manera separada según tu necesidad
+    # mover_suave(1, valores_temporales_iniciales[1], valores_iniciales[1], 9, valores_temporales_iniciales[9], valores_iniciales[9], 2)
 
 # Ejecuta la función que prepara los servos y luego inicia la animación
 preparar_y_animar()
