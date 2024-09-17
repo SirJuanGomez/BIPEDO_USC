@@ -82,8 +82,8 @@ valores_minimos = {
 }
 
 valores_temporales_iniciales = {
-    1: 110,
-    9: 75
+    1: 45,
+    9: 130
 }
 
 def mover_suave(S1, AI1, AF1, S2, AI2, AF2, duracion):
