@@ -126,37 +126,37 @@ def mover_y_confirmar(servo_id, angulo, mensaje_confirmacion):
 def reaccion_en_cadena():
     duracion_total = 5  # Duración total para llegar al valor máximo en segundos
     duracion_regreso = 3  # Duración para regresar a la posición inicial en segundos
-    rango_inicio = valores_iniciales[3] - 20
-    rango_final = valores_iniciales[3] + 20
+    rango_inicio = valores_iniciales[2] - 20
+    rango_final = valores_iniciales[2] + 20
 
-    # Verifica el movimiento del servo 2 y el servo 3
-    servos_a_verificar = [2, 3]  # Lista de servos que deben ser verificados
-    angulos_a_verificar = {2: 90, 3: 90}  # Ángulos a los que deben ser movidos
+    # Verifica el movimiento de los servos 1 y 2
+    servos_a_verificar = [1, 2]  # Lista de servos que deben ser verificados
+    angulos_a_verificar = {1: 90, 2: 90}  # Ángulos a los que deben ser movidos
 
     for servo_id in servos_a_verificar:
         mover_y_confirmar(servo_id, angulos_a_verificar[servo_id],
                           f"Confirme que el servo {servo_id} se movió a {angulos_a_verificar[servo_id]} grados (presione Enter para continuar).")
 
-    # Mueve el servo 3 al valor máximo
-    mover_servo(3, valores_minimos[3], valores_maximos[3], duracion_total)
+    # Mueve el servo 2 al valor máximo
+    mover_servo(2, valores_minimos[2], valores_maximos[2], duracion_total)
     
-    # Inicia el movimiento del servo 2 cuando el servo 3 esté en el rango especificado
+    # Inicia el movimiento del servo 1 cuando el servo 2 esté en el rango especificado
     inicio = time.time()
-    segundo_servo_comenzado = False
+    primer_servo_comenzado = False
     while True:
-        if servo_en_rango(3, rango_inicio, rango_final) and not segundo_servo_comenzado:
-            mover_servo(2, valores_minimos[2], valores_maximos[2], duracion_total)
-            segundo_servo_comenzado = True
-        if not servo_en_rango(3, rango_inicio, rango_final) and segundo_servo_comenzado:
-            mover_servo_a_inicial(2, duracion_regreso)
+        if servo_en_rango(2, rango_inicio, rango_final) and not primer_servo_comenzado:
+            mover_servo(1, valores_minimos[1], valores_maximos[1], duracion_total)
+            primer_servo_comenzado = True
+        if not servo_en_rango(2, rango_inicio, rango_final) and primer_servo_comenzado:
+            mover_servo_a_inicial(1, duracion_regreso)
             break
         time.sleep(0.01)
 
-    # Continúa el servo 3 hacia el valor mínimo
-    mover_servo(3, valores_maximos[3], valores_minimos[3], duracion_total)
+    # Continúa el servo 2 hacia el valor mínimo
+    mover_servo(2, valores_maximos[2], valores_minimos[2], duracion_total)
     
-    # Asegúrate de que el servo 2 regrese a su posición inicial antes de finalizar
-    mover_servo_a_inicial(2, duracion_regreso)
+    # Asegúrate de que el servo 1 regrese a su posición inicial antes de finalizar
+    mover_servo_a_inicial(1, duracion_regreso)
 
 # Ejecuta la reacción en cadena
 reaccion_en_cadena()
