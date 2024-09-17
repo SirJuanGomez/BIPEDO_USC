@@ -55,7 +55,8 @@ def mover_servo(servo_id, valor_inicial, valor_final, duracion):
 
 # Función para mover los servos de regreso a sus ángulos iniciales de manera suave
 def mover_servo_a_inicial(servo_id, duracion):
-    mover_servo(servo_id, kit.servo[servo_id].angle, valores_iniciales[servo_id], duracion)
+    mover_servo(2, kit.servo[2].angle, valores_iniciales[2], duracion)
+    mover_servo(10,kit.servo[10].angle,valores_iniciales[10],duracion)
 
 # Función principal que ejecuta el movimiento en bucle
 def reaccion_en_cadena():
