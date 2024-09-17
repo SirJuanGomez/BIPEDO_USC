@@ -77,6 +77,80 @@ valores_temporales_iniciales = {
     9: 130
 }
 
+def mover_pierna_adelante(S1, AI1, AF1, S2, AI2, AF2, S3, AI3, AF3, S4, AI4, AF4,duracion):
+    pasos = 50
+    intervalo = duracion / pasos
+    PA1 = (AF1 - AI1) / pasos
+    PA2 = (AF2 - AI2) / pasos
+    PA3 = (AF3-AI3)/pasos
+    PA4 = (AF4-AI4)/pasos
+
+    for i in range(pasos + 1):
+        ACT1 = AI1 + (PA1 * i)
+        ACT2 = AI2 + (PA2 * i)
+        ACT3 = AI3 + (PA3 * i)
+        ACT4 = AI4 + (PA4 * i)
+        kit.servo[S1].angle = ACT1
+        kit.servo[S2].angle = ACT2
+        kit.servo[S3].angle = ACT3
+        kit.servo[S4].angle = ACT4
+        time.sleep(intervalo)
+
+def mover_pierna_atras(S1, AI1, AF1, S2, AI2, AF2, S3, AI3, AF3, S4, AI4, AF4,duracion):
+    pasos = 50
+    intervalo = duracion / pasos
+    PA1 = (AF1 - AI1) / pasos
+    PA2 = (AF2 - AI2) / pasos
+    PA3 = (AF3-AI3)/pasos
+    PA4 = (AF4-AI4)/pasos
+
+    for i in range(pasos + 1):
+        ACT1 = AI1 + (PA1 * i)
+        ACT2 = AI2 + (PA2 * i)
+        ACT3 = AI3 + (PA3 * i)
+        ACT4 = AI4 + (PA4 * i)
+        kit.servo[S1].angle = ACT1
+        kit.servo[S2].angle = ACT2
+        kit.servo[S3].angle = ACT3
+        kit.servo[S4].angle = ACT4
+        time.sleep(intervalo)
+
+def pie_adelante(S1, AI1, AF1, S2, AI2, AF2,duracion):
+    pasos = 50
+    intervalo = duracion / pasos
+    PA1 = (AF1 - AI1) / pasos
+    PA2 = (AF2 - AI2) / pasos
+
+    for i in range(pasos + 1):
+        ACT1 = AI1 + (PA1 * i)
+        ACT2 = AI2 + (PA2 * i)
+
+        kit.servo[S1].angle = ACT1
+        kit.servo[S2].angle = ACT2
+
+        time.sleep(intervalo)
+
+def pie_atras(S1, AI1, AF1, S2, AI2, AF2, S3, AI3, AF3, S4, AI4, AF4,duracion):
+    pasos = 50
+    intervalo = duracion / pasos
+    PA1 = (AF1 - AI1) / pasos
+    PA2 = (AF2 - AI2) / pasos
+    PA3 = (AF3-AI3)/pasos
+    PA4 = (AF4-AI4)/pasos
+
+    for i in range(pasos + 1):
+        ACT1 = AI1 + (PA1 * i)
+        ACT2 = AI2 + (PA2 * i)
+        ACT3 = AI3 + (PA3 * i)
+        ACT4 = AI4 + (PA4 * i)
+        kit.servo[S1].angle = ACT1
+        kit.servo[S2].angle = ACT2
+        kit.servo[S3].angle = ACT3
+        kit.servo[S4].angle = ACT4
+        time.sleep(intervalo)
+
+
+
 def mover_suave(S1, AI1, AF1, S2, AI2, AF2, S3, AI3, AF3, S4, AI4, AF4,duracion):
     pasos = 50
     intervalo = duracion / pasos
