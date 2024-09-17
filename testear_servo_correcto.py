@@ -96,3 +96,6 @@ def mover_suave(S1,AI1,AF1,S2,AI2,AF2,duracion):
         kit.servo[S2].angle=ACT2
         time.sleep(intervalo)
 mover_suave(2,valores_iniciales[2],valores_maximos[2],10,valores_iniciales[10],valores_maximos[10],5)
+mover_suave(2,valores_maximos[2],valores_iniciales[2],10,valores_maximos[10],valores_iniciales[10],5)
+mover_suave(2, valores_iniciales[2],valores_minimos[2],10,valores_iniciales[10],valores_minimos[10],5)
+mover_suave(2,valores_minimos[2],valores_iniciales[2],10,valores_minimos[10],valores_iniciales[10],5)
