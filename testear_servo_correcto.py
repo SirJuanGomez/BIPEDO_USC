@@ -9,18 +9,18 @@ valores_iniciales = {
     0: 90, 
     1: 85, 
     2: 90, 
-    3: 85, 
-    4: 80, 
+    3: 90, 
+    4: 85, 
     5: 90,
     6: 95, 
     7: 90, 
     8: 90, 
-    9: 90, 
-    10: 100, 
+    9: 100, 
+    10: 90, 
     11: 90,
     12: 90, 
     13: 90, 
-    14: 120, 
+    14: 90, 
     15: 80
 }
 
@@ -28,36 +28,46 @@ valores_maximos = {
     0: 170, #1
     1: 160, #2
     2: 150, #3
-    3: 110, #4
-    4: 140, #5
+    #######################
+    3: 100, #4
+    ##################
+    4: 130, #5
     5: 130, #6
-    6: 140, #7
-    7: 120, #8
+    6: 90, #7
+    7: 90, #8
+    ###################
     8: 90, #9
     9: 150, #10
     10: 175, #11
-    11: 155, #12
-    12: 140, #13
-    13: 130, #14
-    14: 180, #15
-    15: 120 #16
+    ########################
+    11: 100, #12
+    ########################
+    12: 130, #13
+    13: 120, #14
+    14: 100, #15
+    15: 75 #16
 }
 
 valores_minimos = {
     0: 90, #1
     1: 45, #2
     2: 25, #3
-    3: 25, #4
-    4: 30, #5
-    5: 40, #6
-    6: 40, #7
-    7: 45, #8
+    ##############################
+    3: 110, #4
+    #################
+    4: 50, #5
+    5: 50, #6
+    6: 90, #7
+    7: 90, #8
+    ####################
     8: 25, #9
     9: 25, #10
     10: 25, #11
-    11: 80, #12
-    12: 30, #13
-    13: 40, #14
+    #######################
+    11: 110, #12
+    #####################
+    12: 50, #13
+    13: 60, #14
     14: 65, #15
     15: 45 #16
 }
@@ -67,27 +77,33 @@ valores_temporales_iniciales = {
     9: 130
 }
 
-def mover_suave(S1, AI1, AF1, S2, AI2, AF2, duracion):
+def mover_suave(S1, AI1, AF1, S2, AI2, AF2, S3, AI3, AF3, S4, AI4, AF4,duracion):
     pasos = 50
     intervalo = duracion / pasos
     PA1 = (AF1 - AI1) / pasos
     PA2 = (AF2 - AI2) / pasos
+    PA3 = (AF3-AI3)/pasos
+    PA4 = (AF4-AI4)/pasos
 
     for i in range(pasos + 1):
         ACT1 = AI1 + (PA1 * i)
         ACT2 = AI2 + (PA2 * i)
+        ACT3 = AI3 + (PA3 * i)
+        ACT4 = AI4 + (PA4 * i)
         kit.servo[S1].angle = ACT1
         kit.servo[S2].angle = ACT2
+        kit.servo[S3].angle = ACT3
+        kit.servo[S4].angle = ACT4
         time.sleep(intervalo)
 
 def animaciones():
     print("Iniciando animaciones...")
     
     # Secuencia de animación
-    mover_suave(2, valores_iniciales[2], valores_maximos[2], 10, valores_iniciales[10], valores_maximos[10], 5)
-    mover_suave(2, valores_maximos[2], valores_iniciales[2], 10, valores_maximos[10], valores_iniciales[10], 5)
-    mover_suave(2, valores_iniciales[2], valores_minimos[2], 10, valores_iniciales[10], valores_minimos[10], 5)
-    mover_suave(2, valores_minimos[2], valores_iniciales[2], 10, valores_minimos[10], valores_iniciales[10], 5)
+    mover_suave(12, valores_iniciales[12], valores_maximos[12], 13, valores_iniciales[13], valores_maximos[13],14, valores_iniciales[2], valores_maximos[2], 15, valores_iniciales[10], valores_maximos[10],16, valores_iniciales[16], valores_maximos[16], 5, valores_iniciales[5], valores_maximos[5],6, valores_iniciales[6], valores_maximos[6], 7, valores_iniciales[7], valores_maximos[7],8, valores_iniciales[8], valores_maximos[8], 4, valores_iniciales[4], valores_maximos[4], 5)
+    mover_suave(12, valores_iniciales[12], valores_maximos[12], 13, valores_iniciales[13], valores_maximos[13],14, valores_iniciales[2], valores_maximos[2], 15, valores_iniciales[10], valores_maximos[10],16, valores_iniciales[16], valores_maximos[16], 5, valores_iniciales[5], valores_maximos[5],6, valores_iniciales[6], valores_maximos[6], 7, valores_iniciales[7], valores_maximos[7],8, valores_iniciales[8], valores_maximos[8], 4, valores_iniciales[4], valores_maximos[4], 5)
+    mover_suave(12, valores_iniciales[12], valores_maximos[12], 13, valores_iniciales[13], valores_maximos[13],14, valores_iniciales[2], valores_maximos[2], 15, valores_iniciales[10], valores_maximos[10],16, valores_iniciales[16], valores_maximos[16], 5, valores_iniciales[5], valores_maximos[5],6, valores_iniciales[6], valores_maximos[6], 7, valores_iniciales[7], valores_maximos[7],8, valores_iniciales[8], valores_maximos[8], 4, valores_iniciales[4], valores_maximos[4], 5)
+    mover_suave(12, valores_iniciales[12], valores_maximos[12], 13, valores_iniciales[13], valores_maximos[13],14, valores_iniciales[2], valores_maximos[2], 15, valores_iniciales[10], valores_maximos[10],16, valores_iniciales[16], valores_maximos[16], 5, valores_iniciales[5], valores_maximos[5],6, valores_iniciales[6], valores_maximos[6], 7, valores_iniciales[7], valores_maximos[7],8, valores_iniciales[8], valores_maximos[8], 4, valores_iniciales[4], valores_maximos[4], 5)
 
     print("Animaciones completadas.")
 
