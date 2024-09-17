@@ -85,29 +85,17 @@ for servo_id, angulo in valores_iniciales.items():
     kit.servo[servo_id].angle = angulo
 
 # Función para mover un servo a través de un rango
-def mover_servo(servo_id, min_valor, max_valor, duracion):
+def mover_servo(servo_id, valor_inicial, valor_final, duracion):
     inicio = time.time()
     while True:
         tiempo_transcurrido = time.time() - inicio
-        nuevo_angulo = min_valor + (max_valor - min_valor) * (tiempo_transcurrido / duracion)
-        if nuevo_angulo > max_valor:
-            nuevo_angulo = max_valor
+        nuevo_angulo = valor_inicial + (valor_final - valor_inicial) * (tiempo_transcurrido / duracion)
+        if valor_final > valor_inicial and nuevo_angulo > valor_final:
+            nuevo_angulo = valor_final
+        elif valor_final < valor_inicial and nuevo_angulo < valor_final:
+            nuevo_angulo = valor_final
         kit.servo[servo_id].angle = nuevo_angulo
-        if nuevo_angulo == max_valor:
-            break
-        time.sleep(0.01)
-
-# Función para mover un servo de regreso a la posición inicial
-def mover_servo_a_inicial(servo_id, duracion):
-    inicio = time.time()
-    angulo_inicial = valores_iniciales[servo_id]
-    while True:
-        tiempo_transcurrido = time.time() - inicio
-        nuevo_angulo = angulo_inicial - (angulo_inicial - valores_minimos[servo_id]) * (tiempo_transcurrido / duracion)
-        if nuevo_angulo < valores_minimos[servo_id]:
-            nuevo_angulo = valores_minimos[servo_id]
-        kit.servo[servo_id].angle = nuevo_angulo
-        if nuevo_angulo == valores_minimos[servo_id]:
+        if nuevo_angulo == valor_final:
             break
         time.sleep(0.01)
 
@@ -125,7 +113,7 @@ def mover_y_confirmar(servo_id, angulo, mensaje_confirmacion):
 # Función para ejecutar la reacción en cadena
 def reaccion_en_cadena():
     duracion_total = 5  # Duración total para llegar al valor máximo en segundos
-    duracion_regreso = 3  # Duración para regresar a la posición inicial en segundos
+    duracion_regreso = 5  # Duración para regresar a la posición inicial en segundos
 
     # Verifica el movimiento de los servos 2 y 10
     servos_a_verificar = [2, 10]  # Lista de servos que deben ser verificados
@@ -146,7 +134,7 @@ def reaccion_en_cadena():
         kit.servo[10].angle = valores_minimos[10] + (valores_maximos[10] - valores_minimos[10]) * (tiempo_transcurrido / duracion_maximo)
         time.sleep(0.01)
 
-    # Regresa los servos 2 y 10 a sus ángulos iniciales
+    # Regresa los servos 2 y 10 a sus ángulos iniciales de forma suave
     mover_servo(2, valores_maximos[2], valores_iniciales[2], duracion_regreso)
     mover_servo(10, valores_maximos[10], valores_iniciales[10], duracion_regreso)
 
