@@ -25,58 +25,74 @@ valores_iniciales = {
 }
 
 valores_maximos = {
-    2: 150, # Ajustado según tu configuración
-    10: 175
+    #Lado Derecho
+    0: 170, #1
+    1: 160, #2
+    2: 150, #3
+    ####################################
+    3: 110, #4
+    ################################
+    4: 140, #5
+    5: 130, #6
+    #################################
+    6: 140, #7
+    7: 120, #8
+
+    #Lado Izquierdo
+    8: 90, #9
+    9: 150, #10
+    10: 175, #11
+    ###############################
+    11: 155, #12
+    #############################
+    12: 140, #13
+    13: 130, #14
+    ##############################
+    14: 180, #15
+    15: 120 #16
 }
 
 valores_minimos = {
-    2: 25, # Ajustado según tu configuración
-    10: 25
+    #Lado Derecho
+    0: 90, #1
+    1: 45, #2
+    2: 25, #3
+    ############################
+    3: 25, #4
+    ##########################
+    4: 30, #5
+    5: 40, #6
+    #######################
+    6: 40, #7
+    7: 45, #8
+
+    #Lado Izquierdo
+    8: 25, #9
+    9: 25, #10
+    10: 25, #11
+    ###############################
+    11: 80, #12
+    ###############################
+    12: 30, #13
+    13: 40, #14
+    ###################################
+    14: 65, #15
+    15: 45 #16
 }
 
-# Inicializa todos los servos en sus posiciones iniciales
 for servo_id, angulo in valores_iniciales.items():
     kit.servo[servo_id].angle = angulo
 
-# Función para mover un servo a través de un rango de manera suave
-def mover_servo(servo_id, valor_inicial, valor_final, duracion):
-    inicio = time.time()
-    while True:
-        tiempo_transcurrido = time.time() - inicio
-        nuevo_angulo = valor_inicial + (valor_final - valor_inicial) * (tiempo_transcurrido / duracion)
-        if valor_final > valor_inicial and nuevo_angulo > valor_final:
-            nuevo_angulo = valor_final
-        elif valor_final < valor_inicial and nuevo_angulo < valor_final:
-            nuevo_angulo = valor_final
-        kit.servo[servo_id].angle = nuevo_angulo
-        if nuevo_angulo == valor_final:
-            break
-        time.sleep(0.01)
+def mover_suave(S1,AI1,AF1,S2,AI2,AF2,duracion):
+    pasos=50
+    intervalo=duracion/pasos
+    PA1=(AF1-AI1)/pasos
+    PA2=(AF2-AI2)/pasos
 
-# Función para mover los servos de regreso a sus ángulos iniciales de manera suave
-def mover_servo_a_inicial(servo_id, duracion):
-    mover_servo(2, kit.servo[2].angle, valores_iniciales[2], duracion)
-    mover_servo(10,kit.servo[10].angle,valores_iniciales[10],duracion)
-
-# Función principal que ejecuta el movimiento en bucle
-def reaccion_en_cadena():
-    duracion_total = 5  # Duración total para llegar al valor máximo en segundos
-    duracion_regreso = 5  # Duración para regresar a la posición inicial en segundos
-
-    while True:
-        # Mueve ambos servos al valor máximo
-        inicio = time.time()
-        while True:
-            tiempo_transcurrido = time.time() - inicio
-            if tiempo_transcurrido > duracion_total:
-                break
-            mover_servo(2, valores_minimos[2], valores_maximos[2], tiempo_transcurrido)
-            mover_servo(10, valores_minimos[10], valores_maximos[10], tiempo_transcurrido)
-            time.sleep(0.01)
-
-        # Regresa ambos servos a sus ángulos iniciales de manera suave
-        mover_servo_a_inicial(2, duracion_regreso)
-        mover_servo_a_inicial(10, duracion_regreso)
-
-# Ejecuta la reacción en cadena
-reaccion_en_cadena()
+    for i in range(pasos+1):
+        ACT1=AI1+(PA1*i)
+        ACT2=AI2+(PA2*i)
+        kit.servo[S1].angle=ACT1
+        kit.servo[S2].angle=ACT2
+        time.sleep(intervalo)
+mover_suave(2,valores_iniciales[2],valores_maximos[2],10,valores_iniciales[10],valores_maximos[10],5)
