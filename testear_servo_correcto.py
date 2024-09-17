@@ -82,8 +82,8 @@ valores_minimos = {
 }
 
 valores_temporales_iniciales = {
-    1: 45,
-    9: 130
+    1: 110,
+    9: 75
 }
 
 def mover_suave(S1, AI1, AF1, S2, AI2, AF2, duracion):
@@ -118,15 +118,19 @@ def animaciones():
     for thread in threads:
         thread.join()
 
-# Mueve los servos 1 y 9 a los valores temporales iniciales y luego ejecuta las animaciones
+# Mueve los servos 1 y 9 a los valores temporales iniciales suavemente y luego ejecuta las animaciones
 def preparar_y_animar():
-    for servo_id, angulo in valores_temporales_iniciales.items():
-        print(f"Configurando servo {servo_id} al ángulo {angulo}")
-        kit.servo[servo_id].angle = angulo
-    time.sleep(1)  # Espera para asegurarse de que los servos se muevan a la posición
+    # Movimiento suave hacia los valores temporales iniciales
+    mover_suave(1, valores_iniciales[1], valores_temporales_iniciales[1], 9, valores_iniciales[9], valores_temporales_iniciales[9], 2)
 
-    # Ejecuta las animaciones después de la preparación
+    # Espera para asegurarse de que los servos lleguen a las posiciones temporales
+    time.sleep(2)
+    
+    # Ejecuta las animaciones en paralelo
     animaciones()
+
+    # Movimiento suave de regreso a los valores iniciales mientras se ejecuta la animación
+    mover_suave(1, valores_temporales_iniciales[1], valores_iniciales[1], 9, valores_temporales_iniciales[9], valores_iniciales[9], 2)
 
 # Ejecuta la función que prepara los servos y luego inicia la animación
 preparar_y_animar()
