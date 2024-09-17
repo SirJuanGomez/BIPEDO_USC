@@ -127,27 +127,27 @@ def reaccion_en_cadena():
     duracion_total = 5  # Duración total para llegar al valor máximo en segundos
     duracion_regreso = 3  # Duración para regresar a la posición inicial en segundos
 
-    # Verifica el movimiento de los servos 3 y 10
-    servos_a_verificar = [3, 10]  # Lista de servos que deben ser verificados
-    angulos_a_verificar = {3: 90, 10: 90}  # Ángulos a los que deben ser movidos
+    # Verifica el movimiento de los servos 2 y 10
+    servos_a_verificar = [2, 10]  # Lista de servos que deben ser verificados
+    angulos_a_verificar = {2: 90, 10: 90}  # Ángulos a los que deben ser movidos
 
     for servo_id in servos_a_verificar:
         mover_y_confirmar(servo_id, angulos_a_verificar[servo_id],
                           f"Confirme que el servo {servo_id} se movió a {angulos_a_verificar[servo_id]} grados (presione Enter para continuar).")
 
-    # Mueve los servos 3 y 10 al valor máximo
+    # Mueve los servos 2 y 10 al valor máximo
     inicio = time.time()
     duracion_maximo = duracion_total  # Duración para mover al valor máximo
     while True:
         tiempo_transcurrido = time.time() - inicio
         if tiempo_transcurrido > duracion_maximo:
             break
-        kit.servo[3].angle = valores_minimos[3] + (valores_maximos[3] - valores_minimos[3]) * (tiempo_transcurrido / duracion_maximo)
+        kit.servo[2].angle = valores_minimos[2] + (valores_maximos[2] - valores_minimos[2]) * (tiempo_transcurrido / duracion_maximo)
         kit.servo[10].angle = valores_minimos[10] + (valores_maximos[10] - valores_minimos[10]) * (tiempo_transcurrido / duracion_maximo)
         time.sleep(0.01)
 
-    # Regresa los servos 3 y 10 a sus ángulos iniciales
-    mover_servo_a_inicial(3, duracion_regreso)
+    # Regresa los servos 2 y 10 a sus ángulos iniciales
+    mover_servo_a_inicial(2, duracion_regreso)
     mover_servo_a_inicial(10, duracion_regreso)
 
 # Ejecuta la reacción en cadena
