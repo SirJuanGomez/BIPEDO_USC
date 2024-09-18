@@ -99,15 +99,17 @@ def preparar_y_animar():
 
     mover_pierna_adelante_y_atras(4,valores_iniciales[4],valores_maximos[4],12,valores_iniciales[12],valores_maximos[12],3)
     print("1-hecho")
-    time.sleep(1)
-    mover_suave(5,valores_iniciales[5],valores_maximos[5],13,valores_minimos[13],valores_maximos[13],6,valores_iniciales[6],valores_maximos[6],2)
+    time.sleep(0.5)
+    mover_pierna_adelante_y_atras(6,valores_iniciales[6],valores_maximos[6],13,valores_iniciales[13],valores_maximos[13],0.5)
+
+    #mover_suave(5,valores_iniciales[5],valores_maximos[5],13,valores_minimos[13],valores_maximos[13],6,valores_iniciales[6],valores_maximos[6],2)
     print("2-hecho")
     mover_pierna_adelante_y_atras(5,valores_maximos[5],valores_iniciales[5],13, valores_maximos[13],valores_iniciales[13],3)
     print("3-hecho")
     time.sleep(1)
     mover_suave(4,valores_maximos[4],valores_iniciales[4],12, valores_maximos[12],valores_iniciales[12],6,valores_maximos[6],valores_iniciales[6],3)
     print("4-hecho")
-    
+
     #servos_adelante = [13, 14, 15]
     #servos_atras = [5, 6, 7]
     # Espera para asegurarse de que los servos lleguen a las posiciones temporales
