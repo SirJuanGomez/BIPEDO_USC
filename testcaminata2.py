@@ -11,7 +11,7 @@ valores_iniciales = {
     2: 90, 
     3: 90, 
     4: 85, 
-    5: 130,
+    5: 90,
     6: 95, 
     7: 90, 
     8: 90, 
@@ -19,7 +19,7 @@ valores_iniciales = {
     10: 90, 
     11: 90,
     12: 90, 
-    13: 70, 
+    13: 90, 
     14: 90, 
     15: 80
 }
@@ -110,19 +110,20 @@ def PIETOB(S1,AI1,AF1,S2,AI2,AF2,S3,AI3,AF3,S4,AI4,AF4,duracion):
 def preparar_y_animar():
     print("Moviendo servos a posiciones temporales...")
     # Mueve los servos 1 y 9 a los valores temporales iniciales suavemente
-    #mover_suave(1, valores_iniciales[1], valores_temporales_iniciales[1], 9, valores_iniciales[9], valores_temporales_iniciales[9],0, valores_iniciales[0],valores_iniciales[0],2)
-
-    PIETOB(4,valores_iniciales[4],valores_maximos[4],12,valores_iniciales[12],valores_maximos[12],6,valores_iniciales[6],valores_maximos[6],14,valores_iniciales[14],valores_maximos[14])
+    mover_suave(1, valores_iniciales[1], valores_temporales_iniciales[1], 9, valores_iniciales[9], valores_temporales_iniciales[9],0, valores_iniciales[0],valores_iniciales[0],2)
+    PIETOB(4,valores_iniciales[4],valores_maximos[4],12,valores_iniciales[12],valores_maximos[12],6,valores_iniciales[6],valores_maximos[6],14,valores_iniciales[14],valores_maximos[14],2)
     print("1-hecho")
     time.sleep(0.5)
-    mover_pierna_adelante_y_atras(6,valores_iniciales[6],valores_maximos[6],13,valores_iniciales[13],valores_maximos[13],0.5)
+    #mover_pierna_adelante_y_atras(6,valores_iniciales[6],valores_maximos[6],13,valores_iniciales[13],valores_maximos[13],0.5)
     #mover_suave(5,valores_iniciales[5],valores_maximos[5],13,valores_minimos[13],valores_maximos[13],6,valores_iniciales[6],valores_maximos[6],2)
     print("2-hecho")
-    mover_pierna_adelante_y_atras(5,valores_maximos[5],valores_iniciales[5],13, valores_maximos[13],valores_iniciales[13],3)
+    #mover_pierna_adelante_y_atras(5,valores_maximos[5],valores_iniciales[5],13, valores_maximos[13],valores_iniciales[13],3)
     print("3-hecho")
-    time.sleep(1)
-    mover_suave(4,valores_maximos[4],valores_iniciales[4],12, valores_maximos[12],valores_iniciales[12],6,valores_maximos[6],valores_iniciales[6],3)
+    #time.sleep(1)
+    #mover_suave(4,valores_maximos[4],valores_iniciales[4],12, valores_maximos[12],valores_iniciales[12],6,valores_maximos[6],valores_iniciales[6],3)
     print("4-hecho")
+    
+    PIETOB(4,valores_maximos[4],valores_iniciales[4],12,valores_maximos[12],valores_iniciales[12],6,valores_maximos[6],valores_iniciales[6],14,valores_maximos[14],valores_iniciales[14],2)
 
     #servos_adelante = [13, 14, 15]
     #servos_atras = [5, 6, 7]
