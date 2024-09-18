@@ -91,17 +91,31 @@ def mover_pierna_adelante_y_atras(S1,AI1,AF1,S2,AI2,AF2,duracion):
         kit.servo[S2].angle = AI2 + (PA2*i)
         time.sleep(intervalo)
 
+def PIETOB(S1,AI1,AF1,S2,AI2,AF2,S3,AI3,AF3,S4,AI4,AF4,duracion)
+    pasos = 50
+    intervalo = duracion / pasos
+    
+    PA1 = (AF1 - AI1) / pasos
+    PA2 = (AF2 - AI2) / pasos
+    PA3 = (AF3 - AI3) / pasos
+    PA4 = (AF4 - AI4) / pasos
+
+    for i in range(pasos + 1):
+        kit.servo[S1].angle = AI1 + (PA1 * i)
+        kit.servo[S2].angle = AI2 + (PA2 * i)
+        kit.servo[S3].angle = AI3 + (PA3 * i)
+        kit.servo[S4].angle = AI4 + (PA4 * i)
+        time.sleep(intervalo)
 
 def preparar_y_animar():
     print("Moviendo servos a posiciones temporales...")
     # Mueve los servos 1 y 9 a los valores temporales iniciales suavemente
     #mover_suave(1, valores_iniciales[1], valores_temporales_iniciales[1], 9, valores_iniciales[9], valores_temporales_iniciales[9],0, valores_iniciales[0],valores_iniciales[0],2)
 
-    mover_pierna_adelante_y_atras(4,valores_iniciales[4],valores_maximos[4],12,valores_iniciales[12],valores_maximos[12],3)
+    PIETOB(4,valores_iniciales[4],valores_maximos[4],12,valores_iniciales[12],valores_maximos[12],6,valores_iniciales[6],valores_maximos[6],14,valores_iniciales[14],valores_maximos[14])
     print("1-hecho")
     time.sleep(0.5)
     mover_pierna_adelante_y_atras(6,valores_iniciales[6],valores_maximos[6],13,valores_iniciales[13],valores_maximos[13],0.5)
-
     #mover_suave(5,valores_iniciales[5],valores_maximos[5],13,valores_minimos[13],valores_maximos[13],6,valores_iniciales[6],valores_maximos[6],2)
     print("2-hecho")
     mover_pierna_adelante_y_atras(5,valores_maximos[5],valores_iniciales[5],13, valores_maximos[13],valores_iniciales[13],3)
