@@ -98,16 +98,37 @@ def mover_pierna_adelante_y_atras(duracion):
     AM_atras = [valores_minimos[s] for s in servos_atras]
 
     # Mover ambos grupos a sus ángulos máximos
-    mover_suave(*servos_adelante, *AI_adelante, *AF_adelante, duracion)
-    mover_suave(*servos_atras, *AI_atras, *AF_atras, duracion)
+    mover_suave(servos_adelante[0], AI_adelante[0], AF_adelante[0], 
+                 servos_adelante[1], AI_adelante[1], AF_adelante[1], 
+                 servos_adelante[2], AI_adelante[2], AF_adelante[2], 
+                 duracion)
+
+    mover_suave(servos_atras[0], AI_atras[0], AF_atras[0], 
+                 servos_atras[1], AI_atras[1], AF_atras[1], 
+                 servos_atras[2], AI_atras[2], AF_atras[2], 
+                 duracion)
 
     # Volver al ángulo inicial
-    mover_suave(*servos_adelante, *AF_adelante, *AI_adelante, duracion)
-    mover_suave(*servos_atras, *AF_atras, *AI_atras, duracion)
+    mover_suave(servos_adelante[0], AF_adelante[0], AI_adelante[0], 
+                 servos_adelante[1], AF_adelante[1], AI_adelante[1], 
+                 servos_adelante[2], AF_adelante[2], AI_adelante[2], 
+                 duracion)
+
+    mover_suave(servos_atras[0], AF_atras[0], AI_atras[0], 
+                 servos_atras[1], AF_atras[1], AI_atras[1], 
+                 servos_atras[2], AF_atras[2], AI_atras[2], 
+                 duracion)
 
     # Mover a ángulos mínimos
-    mover_suave(*servos_adelante, *AI_adelante, *AM_adelante, duracion)
-    mover_suave(*servos_atras, *AI_atras, *AM_atras, duracion)
+    mover_suave(servos_adelante[0], AI_adelante[0], AM_adelante[0], 
+                 servos_adelante[1], AI_adelante[1], AM_adelante[1], 
+                 servos_adelante[2], AI_adelante[2], AM_adelante[2], 
+                 duracion)
+
+    mover_suave(servos_atras[0], AI_atras[0], AM_atras[0], 
+                 servos_atras[1], AI_atras[1], AM_atras[1], 
+                 servos_atras[2], AI_atras[2], AM_atras[2], 
+                 duracion)
 
 def animaciones():
     print("Iniciando animaciones...")
@@ -117,8 +138,10 @@ def animaciones():
 def preparar_y_animar():
     print("Moviendo servos a posiciones temporales...")
     # Mueve los servos 1 y 9 a los valores temporales iniciales suavemente
-    mover_suave(1, valores_iniciales[1], valores_temporales_iniciales[1], 9, valores_iniciales[9], valores_temporales_iniciales[9], 2)
-    
+    mover_suave(1, valores_iniciales[1], valores_temporales_iniciales[1], 
+                 9, valores_iniciales[9], valores_temporales_iniciales[9], 
+                 2)
+
     # Espera para asegurarse de que los servos lleguen a las posiciones temporales
     print("Esperando a que los servos lleguen a posiciones temporales...")
     time.sleep(2)
@@ -128,7 +151,9 @@ def preparar_y_animar():
 
     print("Moviendo servos de regreso a posiciones iniciales...")
     # Mueve los servos 1 y 9 de regreso a los valores iniciales suavemente
-    mover_suave(1, valores_temporales_iniciales[1], valores_iniciales[1], 9, valores_temporales_iniciales[9], valores_iniciales[9], 2)
+    mover_suave(1, valores_temporales_iniciales[1], valores_iniciales[1], 
+                 9, valores_temporales_iniciales[9], valores_iniciales[9], 
+                 2)
 
 # Ejecuta la función que prepara los servos y luego inicia la animación
 preparar_y_animar()
