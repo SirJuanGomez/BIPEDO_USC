@@ -114,7 +114,7 @@ def preparar_y_animar():
 
     print("Moviendo servos de regreso a posiciones iniciales...")
     # Mueve los servos 1 y 9 de regreso a los valores iniciales suavemente
-    mover_suave(1, valores_temporales_iniciales[1], valores_iniciales[1], 9, valores_temporales_iniciales[9], valores_iniciales[9], 2)
+    mover_suave(1, valores_temporales_iniciales[1], valores_iniciales[1], 9, valores_temporales_iniciales[9], valores_iniciales[9],0,valores_iniciales[0],valores_iniciales[0],2)
 
 # Ejecuta la función que prepara los servos y luego inicia la animación
 preparar_y_animar()
