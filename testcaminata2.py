@@ -99,11 +99,16 @@ def animaciones():
 def preparar_y_animar():
     print("Moviendo servos a posiciones temporales...")
     # Mueve los servos 1 y 9 a los valores temporales iniciales suavemente
-    mover_suave(1, valores_iniciales[1], valores_temporales_iniciales[1], 9, valores_iniciales[9], valores_temporales_iniciales[9],0, valores_iniciales[0],valores_iniciales[0],2)
+    #mover_suave(1, valores_iniciales[1], valores_temporales_iniciales[1], 9, valores_iniciales[9], valores_temporales_iniciales[9],0, valores_iniciales[0],valores_iniciales[0],2)
+
     mover_pierna_adelante_y_atras(4,valores_iniciales[4],valores_maximos[4],12,valores_iniciales[12],valores_maximos[12],3)
-    mover_suave(5,valores_iniciales[5],valores_maximos[5],13,valores_minimos[13],valores_maximos[13],6,valores_iniciales[6],valores_minimos[6],2)
+
+    mover_suave(5,valores_iniciales[5],valores_maximos[5],13,valores_minimos[13],valores_maximos[13],6,valores_iniciales[6],valores_maximos[6],2)
+
     mover_pierna_adelante_y_atras(5,valores_maximos[5],valores_iniciales[5],13, valores_maximos[13],valores_iniciales[13],3)
-    mover_suave(4,valores_maximos[4],valores_iniciales[4],12, valores_maximos[12],valores_iniciales[12],6,valores_minimos[6],valores_iniciales[6],3)
+
+    mover_suave(4,valores_maximos[4],valores_iniciales[4],12, valores_maximos[12],valores_iniciales[12],6,valores_maximos[6],valores_iniciales[6],3)
+    
     #servos_adelante = [13, 14, 15]
     #servos_atras = [5, 6, 7]
     # Espera para asegurarse de que los servos lleguen a las posiciones temporales
