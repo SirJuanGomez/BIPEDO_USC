@@ -91,10 +91,6 @@ def mover_pierna_adelante_y_atras(S1,AI1,AF1,S2,AI2,AF2,duracion):
         kit.servo[S2].angle = AI2 + (PA2*i)
         time.sleep(intervalo)
 
-def animaciones():
-    print("Iniciando animaciones...")
-    mover_pierna_adelante_y_atras(5)
-    print("Animaciones completadas.")
 
 def preparar_y_animar():
     print("Moviendo servos a posiciones temporales...")
@@ -102,21 +98,21 @@ def preparar_y_animar():
     #mover_suave(1, valores_iniciales[1], valores_temporales_iniciales[1], 9, valores_iniciales[9], valores_temporales_iniciales[9],0, valores_iniciales[0],valores_iniciales[0],2)
 
     mover_pierna_adelante_y_atras(4,valores_iniciales[4],valores_maximos[4],12,valores_iniciales[12],valores_maximos[12],3)
-
+    print("1-hecho")
+    time.sleep(1)
     mover_suave(5,valores_iniciales[5],valores_maximos[5],13,valores_minimos[13],valores_maximos[13],6,valores_iniciales[6],valores_maximos[6],2)
-
+    print("2-hecho")
     mover_pierna_adelante_y_atras(5,valores_maximos[5],valores_iniciales[5],13, valores_maximos[13],valores_iniciales[13],3)
-
+    print("3-hecho")
+    time.sleep(1)
     mover_suave(4,valores_maximos[4],valores_iniciales[4],12, valores_maximos[12],valores_iniciales[12],6,valores_maximos[6],valores_iniciales[6],3)
+    print("4-hecho")
     
     #servos_adelante = [13, 14, 15]
     #servos_atras = [5, 6, 7]
     # Espera para asegurarse de que los servos lleguen a las posiciones temporales
     print("Esperando a que los servos lleguen a posiciones temporales...")
     time.sleep(2)
-
-    # Inicia las animaciones
-    animaciones()
 
     print("Moviendo servos de regreso a posiciones iniciales...")
     # Mueve los servos 1 y 9 de regreso a los valores iniciales suavemente
