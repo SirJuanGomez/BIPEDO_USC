@@ -91,7 +91,7 @@ def mover_pierna_adelante_y_atras(S1,AI1,AF1,S2,AI2,AF2,duracion):
         kit.servo[S2].angle = AI2 + (PA2*i)
         time.sleep(intervalo)
 
-def PIETOB(S1,AI1,AF1,S2,AI2,AF2,S3,AI3,AF3,S4,AI4,AF4,duracion)
+def PIETOB(S1,AI1,AF1,S2,AI2,AF2,S3,AI3,AF3,S4,AI4,AF4,duracion):
     pasos = 50
     intervalo = duracion / pasos
     
