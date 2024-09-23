@@ -39,7 +39,7 @@ def caminata():
     mover_servos([4,6,12,14],[maximos[4],maximos[6],maximos[12],maximos[14]],[minimos[4],minimos[6],minimos[12],minimos[14]],3)
     print("Parte 2- Hecho..")
     time.sleep(5)
-    mover_servos([3,11],[maximos[3],maximos[11]],[minimos[3],minimos[11]])
+    mover_servos([3,11,15],[maximos[3],maximos[11],inicial[15]],[minimos[3],minimos[11],inicial[15]])
     print("Cadera Corregida..")
     mover_servos([4,6,12,14],[minimos[4],minimos[6],minimos[12],minimos[14]],[inicial[4],inicial[6],inicial[12],inicial[14]],2)
     print("Parte 3- Hecho..")
