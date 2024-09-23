@@ -13,22 +13,9 @@ maximos = {0: 170, 1: 160, 2: 150, 3: 95, 4: 110, 5: 130,
            6: 110, 7: 90, 8: 90, 9: 150, 10: 175, 11: 100,
            12: 100, 13: 120, 14: 110, 15: 75}
 
-minimos = {0: 90, 
-           1: 45, 
-           2: 25, 
-           3: 90, 
-           4: 55, 
-           5: 50,
-            6: 60, 
-            7: 90, 
-            8: 25, 
-            9: 25, 
-            10: 25, 
-            11: 110,
-            12: 75, 
-            13: 60, 
-            14: 65, 
-            15: 80}
+minimos = {0: 90, 1: 45, 2: 25, 3: 90, 4: 55, 5: 50,
+           6: 60, 7: 90, 8: 25, 9: 25, 10: 25, 11: 110,
+           12: 75, 13: 60, 14: 65, 15: 80}
 
 maximo_tmp = {13: 85}
 
@@ -52,8 +39,10 @@ def caminata():
     mover_servos([4,6,12,14],[maximos[4],maximos[6],maximos[12],maximos[14]],[minimos[4],minimos[6],minimos[12],minimos[14]],3)
     print("Parte 2- Hecho..")
     time.sleep(5)
+    mover_servos([3,11],[maximos[3],maximos[11]],[minimos[3],minimos[11]])
+    print("Cadera Corregida..")
     mover_servos([4,6,12,14],[minimos[4],minimos[6],minimos[12],minimos[14]],[inicial[4],inicial[6],inicial[12],inicial[14]],2)
     print("Parte 3- Hecho..")
     time.sleep(0.1)
     print("Finalizando..")
-caminata(3)
+caminata()
