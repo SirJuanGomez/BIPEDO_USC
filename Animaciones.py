@@ -20,6 +20,12 @@ minimos = {0: 90, 1: 45, 2: 25, 3: 90, 4: 55, 5: 50,
 maximo_tmp = {13: 85,
               7:100}
 
+def start():
+    print("Servos en posicion inicial..")
+    mover_servos(range(16),[inicial[i] 
+                            for i in range(16)],2
+                            )
+
 def mover_servos(servos, AI, AF, duracion):
     pasos = 30
     intervalo = duracion / pasos
@@ -32,6 +38,7 @@ def mover_servos(servos, AI, AF, duracion):
         time.sleep(intervalo)
 
 def caminata():
+    start()
     print("Iniciando caminata...")
     mover_servos([3,11,15], [inicial[3],inicial[11],inicial[15]],[maximos[3],maximos[11],maximos[15]],5)
     mover_servos([2,4,6,7,10,12,14], [inicial[2],inicial[4],inicial[6],inicial[7],inicial[10],inicial[12],inicial[14]],[maximos[2],maximos[4],maximos[6],maximo_tmp[7],maximos[10],maximos[12],maximos[14]],5)
