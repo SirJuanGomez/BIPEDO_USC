@@ -24,9 +24,7 @@ maximo_tmp = {13: 85,
 
 def start():
     print("Servos en posicion inicial..")
-    mover_servos(range(16),[inicial[i] 
-                            for i in range(16)],2
-                            )
+    mover_servos(range(16),[inicial[i]for i in range(16)],[inicial[i]for i in range(16)],2)
 
 def mover_servos(servos, AI, AF, duracion):
     pasos = 30
