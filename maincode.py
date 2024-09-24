@@ -10,10 +10,10 @@ inicial = {
     3:100,
     4:100,
     5:85,
-    6:85,
+    6:90,
     7:90,
-    8:75,
-    9:100,
+    8:90,
+    9:115,
     10:80,
     11:90,
     12:100,
@@ -43,22 +43,27 @@ def caminar():
 
     max_cam={
 
-        12:90,11:120,10:115,9:110,8:90, #Maximos D
+        13:133,12:90,11:120,10:115,9:110,8:90, #Maximos D
 
-        3:110,4:110,5:120,6:95,7:90 #MaximosI
+        2:133,3:110,4:120,5:120,6:110,7:90 #MaximosI
     }
 
     min_cam={
         
-        12:80,11:60,10:60,9:80,8:85, #Minimos D
+        13:47,12:80,11:60,10:60,9:75,8:85, #Minimos D
         
-        3:95,4:70,5:60,6:85,7:100 #Minimos I
+        2:47,3:95,4:70,5:60,6:75,7:100 #Minimos I
     }
 
-    srv([3,12,7,8],[inicial[3],inicial[12],inicial[7],inicial[8]],[max_cam[3],max_cam[12],min_cam[7],max_cam[8]])
+    srv([3,12,7,8],[inicial[3],inicial[12],inicial[7],inicial[8]],[max_cam[3],max_cam[12],min_cam[7],max_cam[8]],0.5)
     
     print("Caderas Finalizadas")
 
-    srv([3,4,5,6,9,10,11,12],[inicial[3],inicial[4],inicial[5],inicial[6],inicial[9],inicial[10],inicial[11],inicial[12]],[max_cam[3],max_cam[4],max_cam[5],max_cam[6],min_cam[9],min_cam[10],min_cam[11],min_cam[12]])
-
+    srv([3,4,5,6,9,10,11,12,7,2,13],[inicial[3],inicial[4],inicial[5],inicial[6],inicial[9],inicial[10],inicial[11],inicial[12],inicial[7],inicial[2],inicial[13]],[max_cam[3],max_cam[4],max_cam[5],max_cam[6],max_cam[9],max_cam[10],max_cam[11],max_cam[12],max_cam[7],min_cam[2],max_cam[13]],1.5)
+    
+    srv([3,4,5,6,9,10,11,12,8,2,13],[max_cam[3],max_cam[4],max_cam[5],max_cam[6],max_cam[9],max_cam[10],max_cam[11],max_cam[12],inicial[8],min_cam[2],max_cam[13]],[min_cam[3],min_cam[4],min_cam[5],min_cam[6],min_cam[9],min_cam[10],min_cam[11],min_cam[12],min_cam[8],max_cam[2],min_cam[13]],1.5)
+    
+    srv([3,4,5,6,9,10,11,12,8,2,13],[min_cam[3],min_cam[4],min_cam[5],min_cam[6],min_cam[9],min_cam[10],min_cam[11],min_cam[12],min_cam[8],max_cam[2],min_cam[13]],[inicial[3],inicial[4],inicial[5],inicial[6],inicial[9],inicial[10],inicial[11],inicial[12],inicial[8],inicial[2],inicial[13]],1.5)
+  
 caminar()
+start()
