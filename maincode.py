@@ -7,7 +7,7 @@ inicial = {
     0:90,
     1:110,
     2:90,
-    3:90,
+    3:100,
     4:100,
     5:85,
     6:85,
@@ -16,7 +16,7 @@ inicial = {
     9:100,
     10:80,
     11:90,
-    12:90,
+    12:100,
     13:90,
     14:90,
     15:90
@@ -55,4 +55,10 @@ def caminar():
         3:95,4:70,5:60,6:85,7:100 #Minimos I
     }
 
-    srv([3,12],[inicial[3],inicial[12]],[max_cam[3],max_cam[12]])
+    srv([3,12,7,8],[inicial[3],inicial[12],inicial[7],inicial[8]],[max_cam[3],max_cam[12],min_cam[7],max_cam[8]])
+    
+    print("Caderas Finalizadas")
+
+    srv([3,4,5,6,9,10,11,12],[inicial[3],inicial[4],inicial[5],inicial[6],inicial[9],inicial[10],inicial[11],inicial[12]],[max_cam[3],max_cam[4],max_cam[5],max_cam[6],min_cam[9],min_cam[10],min_cam[11],min_cam[12]])
+
+caminar()
